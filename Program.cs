@@ -29,45 +29,29 @@ namespace Operation_Decision_Loops
             static float semesterEvaluationParticipation = 0.05f;
             static float semesterEvaluationProject = 0.6f;
 
-            static float partial1Result;
-            static float partial2Result;
+            static float Partial1Result;
+            static float Partial2Result;
             static float semesterResult;
 
             //Lower Limit (Minimum) points needed to get the right for final evaluation
             static float semesterResultThreshold = 12f;
 
-        static float PartialEvaluation1(float workInClass, float practice, float participation, float project) {
+        static float PartialEvaluation(float workInClass, float practice, float participation, float project) {
 
             float partialResult = workInClass * partialEvaluationWorkInClass
             + practice * partialEvaluationPractice
             + participation * partialEvaluationParticipation
             + project * partialEvaluationProject;
 
-            //Console.WriteLine("partial1Result = " + partial1Result);
-
-            return partialResult1;
+            return partialResult;
         }
 
-        static float PartialEvaluation2(float workInClass, float practice, float participation, float project) {
-
-            float partialResult = workInClass * partialEvaluationWorkInClass
-            + practice * partialEvaluationPractice
-            + participation * partialEvaluationParticipation
-            + project * partialEvaluationProject;
-
-            //Console.WriteLine("partial1Result = " + partial1Result);
-
-            return partialResult2;
-        }
-
-        static float semesterEvaluation(float workInClass, float practice, float participation, float project) {
+        static float SemesterEvaluation(float workInClass, float practice, float participation, float project) {
 
             float semesterResult = workInClass * semesterEvaluationWorkInClass
             + practice * semesterEvaluationPractice
             + participation * semesterEvaluationParticipation
             + project * semesterEvaluationProject;
-
-            //Console.WriteLine("semester1Result = " + semester1Result);
 
             return semesterResult;
         }
@@ -75,28 +59,54 @@ namespace Operation_Decision_Loops
         static void Main(string[] args)
         {
 
+            float partial1Result;
+            float partial2Result;
+            float semesterResult;
+
 /*             partial1Result = 10 * partialEvaluationWorkInClass
             + 10 * partialEvaluationPractice
             + 10 * partialEvaluationParticipation
             + 10 * partialEvaluationProject; */
 
-            partial1Result = PartialEvaluation();
+            partial1Result = PartialEvaluation(10f, 10f, 10f, 10f);
 
-            Console.WriteLine("partial1Result = " + partial1Result);
+            Console.WriteLine("1st Partial Result = " + partial1Result);
 
-            partial2Result = 10 * partialEvaluationWorkInClass
+            /*partial2Result = 10 * partialEvaluationWorkInClass
             + 10 * partialEvaluationPractice
             + 10 * partialEvaluationParticipation
-            + 10 * partialEvaluationProject;
+            + 10 * partialEvaluationProject;*/
 
-            Console.WriteLine("partial2Result = " + partial2Result);
+            partial2Result = PartialEvaluation(10f, 10f, 10f, 10f);
 
-            semesterResult = 10 * semesterEvaluationWorkInClass
+            Console.WriteLine("2nd Partial Result = " + partial2Result);
+
+            /*semesterResult = 10 * semesterEvaluationWorkInClass
             + 10 * semesterEvaluationPractice
             + 10 * semesterEvaluationParticipation
-            + 10 * semesterEvaluationProject;
+            + 10 * semesterEvaluationProject;*/
 
-            Console.WriteLine("semesterResult = " + semesterResult);
+            semesterResult = SemesterEvaluation(10f, 10f, 10f, 10f);
+
+            Console.WriteLine("Semester Result = " + semesterResult);
+
+            //if student has +12 points
+            if(partial1Result + partial2Result >= semesterResultThreshold){
+                semesterResult = SemesterEvaluation(10f, 10f, 10f, 10f);
+            }
+            //if student has less than 12 points
+            else{
+                semesterResult = 0f;
+            }
+            Console.WriteLine("Final result = " + semesterResult);
+
+
+            if(semesterResult >= semesterResultThreshold){
+                Console.WriteLine("Student has approved");
+            }
+            else{
+                Console.WriteLine("Student has failed");
+            }
         }
     }
 }
